@@ -1,9 +1,9 @@
 ﻿using System;
-using cadastro_de_clientes.Dominio.Enderecos;
+using cadastro_de_clientes.Classes;
+using cadastro_de_clientes.Interfaces;
+namespace cadastro_de_clientes.Classes;
 
-namespace cadastro_de_clientes.Dominio.Pessoas;
-
-public class PessoaFisica : Pessoa
+public class PessoaFisica : Pessoa, IPessoaFisica
 {
     public string? Cpf { get; private set; }
     public DateTime DataNascimento { get; private set; }
@@ -21,6 +21,16 @@ public class PessoaFisica : Pessoa
         return this;
     }
     public override double PagarImposto(double rendimento)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool ValidarCpf(string Cpf)
+    {
+        throw new NotImplementedException();
+    }
+
+    public bool ValidarDataNascimento(DateTime DataNascimento)
     {
         throw new NotImplementedException();
     }

@@ -1,9 +1,9 @@
 ﻿using System;
-using cadastro_de_clientes.Dominio.Enderecos;
+using cadastro_de_clientes.Classes;
+using cadastro_de_clientes.Interfaces;
+namespace cadastro_de_clientes.Classes;
 
-namespace cadastro_de_clientes.Dominio.Pessoas;
-
-public class PessoaJuridica : Pessoa
+public class PessoaJuridica : Pessoa, IPessoaJuridica
 {
     public string? razaoSocial { get; private set; }
     public string? cnpj { get; private set; }
@@ -26,6 +26,11 @@ public class PessoaJuridica : Pessoa
     public override double PagarImposto(double rendimento)
     {
         // TODO ADICIONAR REGRA DE CÁLCULO DE IMPOSTO
+        throw new NotImplementedException();
+    }
+
+    public bool ValidarCnpj(string Cnpj)
+    {
         throw new NotImplementedException();
     }
 }

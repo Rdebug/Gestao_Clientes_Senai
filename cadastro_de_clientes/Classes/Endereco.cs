@@ -1,5 +1,5 @@
 ﻿using System;
-namespace cadastro_de_clientes.Dominio.Enderecos
+namespace cadastro_de_clientes.Classes
 {
 	public class Endereco
 	{
