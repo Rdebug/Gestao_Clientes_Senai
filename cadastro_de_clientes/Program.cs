@@ -20,13 +20,20 @@ namespace CadastroDeClientes
             PessoaFisica pessoaFisica = new PessoaFisica(nome, endereco);
             pessoaFisica.AdicionarCpf("928.192.042-09");
             pessoaFisica.AdicionarDataNascimento(dataNascimento);
+            pessoaFisica.AdicionaRendimento(2000.0);
             
             PessoaJuridica pessoaJuridica = new PessoaJuridica(nome, endereco);
             pessoaJuridica.adicionarCnpj("01.028.928/0001-92");
             pessoaJuridica.AdicionarRazaoSocial("Moura Tecnologia");
+            pessoaJuridica.AdicionaRendimento(5000.00);
 
-            Console.WriteLine(pessoaFisica.DataNascimento);
-            Console.WriteLine(pessoaJuridica);
+            CalculadoraDeImpostos Calculadora = new CalculadoraDeImpostos();
+            double ImpostoPessoaFisica = Calculadora.CalculaPessoaFisica(pessoaFisica.Rendimento);
+            double ImpostoPessoaJuridica = Calculadora.CalculaPessoaJuridica(pessoaJuridica.Rendimento);
+            Console.WriteLine(ImpostoPessoaFisica);
+            Console.WriteLine(ImpostoPessoaJuridica);
+
+
         }
     }
 }

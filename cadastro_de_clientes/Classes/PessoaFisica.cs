@@ -34,5 +34,11 @@ public class PessoaFisica : Pessoa, IPessoaFisica
     {
         throw new NotImplementedException();
     }
+
+    public override Pessoa AdicionaRendimento(double Rendimento)
+    {
+        this.Rendimento = Rendimento;
+        return this;
+    }
 }
 

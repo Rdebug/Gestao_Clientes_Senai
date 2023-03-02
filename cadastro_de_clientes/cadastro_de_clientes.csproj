@@ -10,9 +10,15 @@
   <ItemGroup>
     <None Remove="Classes\" />
     <None Remove="Interfaces\" />
+    <None Remove="Classes\CalculoDeImposto\" />
+    <None Remove="Classes\CalculoDeImposto\PessoaFisica\" />
+    <None Remove="Classes\CalculoDeImposto\PessoaJuridica\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Classes\CalculoDeImposto\" />
+    <Folder Include="Classes\CalculoDeImposto\PessoaFisica\" />
+    <Folder Include="Classes\CalculoDeImposto\PessoaJuridica\" />
   </ItemGroup>
 </Project>
