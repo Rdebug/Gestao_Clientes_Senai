@@ -30,8 +30,8 @@ namespace CadastroDeClientes
             CalculadoraDeImpostos Calculadora = new CalculadoraDeImpostos();
             double ImpostoPessoaFisica = Calculadora.CalculaPessoaFisica(pessoaFisica.Rendimento);
             double ImpostoPessoaJuridica = Calculadora.CalculaPessoaJuridica(pessoaJuridica.Rendimento);
-            Console.WriteLine(ImpostoPessoaFisica);
-            Console.WriteLine(ImpostoPessoaJuridica);
+            //Console.WriteLine(ImpostoPessoaFisica);
+            //Console.WriteLine(ImpostoPessoaJuridica);
 
 
         }

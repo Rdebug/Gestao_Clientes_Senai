@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using cadastro_de_clientes.Classes;
 using cadastro_de_clientes.Interfaces;
 namespace cadastro_de_clientes.Classes;
@@ -12,14 +13,23 @@ public class PessoaFisica : Pessoa, IPessoaFisica
 
     public PessoaFisica AdicionarCpf(string Cpf)
     {
-        this.Cpf = Cpf;
-        return this;
+        if(this.ValidarCpf(Cpf))
+        {
+            this.Cpf = Cpf;
+        }
+            return this;
+
     }
+
     public PessoaFisica AdicionarDataNascimento(DateTime DataNascimento)
     {
-        this.DataNascimento = DataNascimento;
+        if(this.ValidarDataNascimento(DataNascimento))
+        {
+            this.DataNascimento = DataNascimento;
+        }
         return this;
     }
+
     public override double PagarImposto(double rendimento)
     {
         throw new NotImplementedException();
@@ -27,12 +37,18 @@ public class PessoaFisica : Pessoa, IPessoaFisica
 
     public bool ValidarCpf(string Cpf)
     {
-        throw new NotImplementedException();
+        string Pattern = "\\d{3}\\.?\\d{3}\\.?\\d{3}\\-?\\d{2}";
+        Regex Regex = new(Pattern);
+        if (Regex.IsMatch(Cpf)) return true;
+        return false;
     }
 
     public bool ValidarDataNascimento(DateTime DataNascimento)
     {
-        throw new NotImplementedException();
+        DateTime Hoje = DateTime.Today;
+        double Idade = (Hoje - DataNascimento).TotalDays / 365;
+        if (Idade >= 18) return true;
+        return false;
     }
 
     public override Pessoa AdicionaRendimento(double Rendimento)
