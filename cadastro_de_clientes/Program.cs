@@ -32,6 +32,7 @@ namespace CadastroDeClientes
             
             Console.WriteLine(ImpostoPessoaFisica);
             Console.WriteLine(ImpostoPessoaJuridica);
+            Console.WriteLine(pessoaJuridica.cnpj);
             Thread.Sleep(5000);
 
 

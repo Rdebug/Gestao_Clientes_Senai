@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using cadastro_de_clientes.Classes;
 using cadastro_de_clientes.Interfaces;
 namespace cadastro_de_clientes.Classes;
@@ -18,8 +19,10 @@ public class PessoaJuridica : Pessoa, IPessoaJuridica
 
     public PessoaJuridica adicionarCnpj(string cnpj)
     {
-        // TODO VALIDAR CNPJ;
+        if(this.ValidarCnpj(cnpj))
+        {
         this.cnpj = cnpj;
+        }
         return this;
     }
 
@@ -35,7 +38,10 @@ public class PessoaJuridica : Pessoa, IPessoaJuridica
 
     public bool ValidarCnpj(string Cnpj)
     {
-        throw new NotImplementedException();
+        string Pattern = "\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}\\-\\d{2}";
+        Regex Regex = new (Pattern);
+        if (Regex.IsMatch(Cnpj)) return true;
+        return false;
     }
 
     public override Pessoa AdicionaRendimento(double Rendimento)
