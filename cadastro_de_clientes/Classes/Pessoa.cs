@@ -12,7 +12,7 @@ public abstract class Pessoa
 		this.Nome = Nome;
 		this.Endereco = Endereco;
 	}
-	public abstract double PagarImposto(double rendimento);
+	public abstract double PagarImposto();
 	public abstract Pessoa AdicionaRendimento(double Rendimento);
 }
 

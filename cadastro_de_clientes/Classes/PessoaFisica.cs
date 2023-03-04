@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-using cadastro_de_clientes.Classes;
 using cadastro_de_clientes.Interfaces;
 namespace cadastro_de_clientes.Classes;
 
@@ -30,9 +29,14 @@ public class PessoaFisica : Pessoa, IPessoaFisica
         return this;
     }
 
-    public override double PagarImposto(double rendimento)
+    public override double PagarImposto()
     {
-        throw new NotImplementedException();
+        if(this.Rendimento != 0)
+        {
+            CalculadoraDeImpostos Calculadora = new CalculadoraDeImpostos();
+            return Calculadora.CalculaPessoaFisica(this.Rendimento);
+        }
+        return 0.0;
     }
 
     public bool ValidarCpf(string Cpf)

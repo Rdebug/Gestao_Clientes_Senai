@@ -21,6 +21,7 @@ namespace CadastroDeClientes
             pessoaFisica.AdicionarCpf("928.192.042-09");
             pessoaFisica.AdicionarDataNascimento(dataNascimento);
             pessoaFisica.AdicionaRendimento(2000.0);
+            double ImpostoPessoaFisica = pessoaFisica.PagarImposto();
             
             PessoaJuridica pessoaJuridica = new PessoaJuridica(nome, endereco);
             pessoaJuridica.adicionarCnpj("01.028.928/0001-92");
@@ -28,9 +29,9 @@ namespace CadastroDeClientes
             pessoaJuridica.AdicionaRendimento(5000.00);
 
             CalculadoraDeImpostos Calculadora = new CalculadoraDeImpostos();
-            double ImpostoPessoaFisica = Calculadora.CalculaPessoaFisica(pessoaFisica.Rendimento);
             double ImpostoPessoaJuridica = Calculadora.CalculaPessoaJuridica(pessoaJuridica.Rendimento);
-            //Console.WriteLine(ImpostoPessoaFisica);
+            Console.WriteLine(ImpostoPessoaFisica);
+            Thread.Sleep(5000);
             //Console.WriteLine(ImpostoPessoaJuridica);
 
 

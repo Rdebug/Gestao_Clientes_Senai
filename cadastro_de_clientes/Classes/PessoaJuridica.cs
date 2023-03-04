@@ -23,7 +23,7 @@ public class PessoaJuridica : Pessoa, IPessoaJuridica
         return this;
     }
 
-    public override double PagarImposto(double rendimento)
+    public override double PagarImposto()
     {
         // TODO ADICIONAR REGRA DE CÁLCULO DE IMPOSTO
         throw new NotImplementedException();
