@@ -25,8 +25,12 @@ public class PessoaJuridica : Pessoa, IPessoaJuridica
 
     public override double PagarImposto()
     {
-        // TODO ADICIONAR REGRA DE CÁLCULO DE IMPOSTO
-        throw new NotImplementedException();
+        if(this.Rendimento != 0)
+        {
+            CalculadoraDeImpostos Calculadora = new CalculadoraDeImpostos();
+            return Calculadora.CalculaPessoaJuridica(this.Rendimento);
+        }
+        return 0.0;
     }
 
     public bool ValidarCnpj(string Cnpj)

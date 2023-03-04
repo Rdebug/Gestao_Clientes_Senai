@@ -27,12 +27,12 @@ namespace CadastroDeClientes
             pessoaJuridica.adicionarCnpj("01.028.928/0001-92");
             pessoaJuridica.AdicionarRazaoSocial("Moura Tecnologia");
             pessoaJuridica.AdicionaRendimento(5000.00);
+            double ImpostoPessoaJuridica = pessoaJuridica.PagarImposto(); 
 
-            CalculadoraDeImpostos Calculadora = new CalculadoraDeImpostos();
-            double ImpostoPessoaJuridica = Calculadora.CalculaPessoaJuridica(pessoaJuridica.Rendimento);
+            
             Console.WriteLine(ImpostoPessoaFisica);
+            Console.WriteLine(ImpostoPessoaJuridica);
             Thread.Sleep(5000);
-            //Console.WriteLine(ImpostoPessoaJuridica);
 
 
         }
