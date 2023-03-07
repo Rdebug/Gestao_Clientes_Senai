@@ -9,7 +9,7 @@ namespace cadastro_de_clientes.Classes
 		public string? estado { get; private set; }
         public bool isComercial { get; private set; }
 
-		private Endereco(string logradouro, string bairro )
+		private Endereco(string? logradouro, string? bairro )
 		{
 			this.logradouro = logradouro;
 			this.bairro = bairro;
@@ -18,7 +18,7 @@ namespace cadastro_de_clientes.Classes
 		/**
 		 * Método responsável pela montagem de um novo endereço
 		 */
-		public static Endereco NovoEndereco(string logradouro, string bairro)
+		public static Endereco NovoEndereco(string? logradouro, string? bairro)
 		{
 			Endereco novoEndereco = new Endereco(logradouro, bairro);
 			return novoEndereco;
@@ -27,7 +27,7 @@ namespace cadastro_de_clientes.Classes
 		/**
 		 * Builder para adicionar Cidade
 		 */
-		public Endereco AdicionarCidade(string cidade)
+		public Endereco AdicionarCidade(string? cidade)
 		{
 			this.cidade = cidade;
 			return this;
@@ -44,7 +44,7 @@ namespace cadastro_de_clientes.Classes
 		/**
 		 * Builder para adicionar Estado
 		 */
-		public Endereco AdicionarEstado(string estado)
+		public Endereco AdicionarEstado(string? estado)
 		{
 			this.estado = estado;
 			return this;

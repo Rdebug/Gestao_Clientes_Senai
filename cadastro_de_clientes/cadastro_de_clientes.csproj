@@ -13,6 +13,7 @@
     <None Remove="Classes\CalculoDeImposto\" />
     <None Remove="Classes\CalculoDeImposto\PessoaFisica\" />
     <None Remove="Classes\CalculoDeImposto\PessoaJuridica\" />
+    <None Remove="Classes\Sistema\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />
@@ -20,5 +21,9 @@
     <Folder Include="Classes\CalculoDeImposto\" />
     <Folder Include="Classes\CalculoDeImposto\PessoaFisica\" />
     <Folder Include="Classes\CalculoDeImposto\PessoaJuridica\" />
+    <Folder Include="Classes\Sistema\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Classes\Menu.cs" />
   </ItemGroup>
 </Project>
