@@ -9,9 +9,9 @@ public class PessoaJuridica : Pessoa, IPessoaJuridica
     public string? razaoSocial { get; private set; }
     public string? cnpj { get; private set; }
 
-    public PessoaJuridica(string Nome, Endereco Endereco) : base(Nome, Endereco) { }
+    public PessoaJuridica(string? Nome, Endereco Endereco) : base(Nome, Endereco) { }
 
-    public PessoaJuridica AdicionarRazaoSocial(string razaoSocial)
+    public PessoaJuridica AdicionarRazaoSocial(string? razaoSocial)
     {
         this.razaoSocial = razaoSocial;
         return this;
@@ -48,6 +48,22 @@ public class PessoaJuridica : Pessoa, IPessoaJuridica
     {
         this.Rendimento = Rendimento;
         return this;
+    }
+
+    public override string ToString()
+    {
+        return $@"
+Informações do Cliente:
+Nome: {this.Nome}
+CNPJ: {this.cnpj}
+Razão Social: {this.razaoSocial}
+Rendimento: {this.Rendimento.ToString("C")} reais
+Imposto Apurado: {this.PagarImposto().ToString("C")} reais
+Informações de Endereço:
+
+{this.Endereco}
+
+        ";
     }
 }
 

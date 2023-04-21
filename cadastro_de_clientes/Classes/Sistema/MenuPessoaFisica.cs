@@ -3,6 +3,14 @@ namespace cadastro_de_clientes.Classes.Sistema
 {
     public class MenuPessoaFisica : Menu
     {
+        public MenuPessoaFisica()
+        {
+            string pastaClientes = "Clientes/PessoaFisica";
+            if (!Directory.Exists(pastaClientes))
+            {
+                Directory.CreateDirectory(pastaClientes);
+            }
+        }
         public override string DefinirTitulo()
         {
             this.Titulo = $@"
@@ -15,13 +23,21 @@ namespace cadastro_de_clientes.Classes.Sistema
             =====================================================
             |               1. Novo Cadastro                    |
             |               2. Listar Todos                     |
-            |               3. Exportar (txt)                   |
-            |               4. Exportar (csv)                   |
+            |               3. Exportar (csv)                   |
             |               9. Voltar                           |
             |               0. Encerrar Sistema                 |
             =====================================================
             ";
             return Titulo;
+        }
+        public override void Apresentacao()
+        {
+            Console.Clear();
+            this.Titulo = DefinirTitulo();
+            Console.Write(this.Titulo);
+            var OpcaoSelecionada = Escolha.SelecionarOpcao();
+            this.OpcaoSelecionada = OpcaoSelecionada;
+            this.ExecutarOpcaoSelecionada();
         }
         public override void ExecutarOpcaoSelecionada()
         {
@@ -31,8 +47,14 @@ namespace cadastro_de_clientes.Classes.Sistema
                     this.NovoCadastro();
                     break;
                 case ConsoleKey.D2:
-                    Console.WriteLine("Clicou");
                     this.ListarTodos();
+                    break;
+                case ConsoleKey.D3:
+                    this.ExportarCSV();
+                    break;
+                case ConsoleKey.D9:
+                    Console.Clear();
+                    new Sistema();
                     break;
                 default:
                     Sistema.GerarMensagem("Opção Inválida", "erro");
@@ -47,21 +69,72 @@ namespace cadastro_de_clientes.Classes.Sistema
             Console.Clear();
             PessoaFisica Cliente = AdicionarInformacoesDeCliente(EnderecoDoCliente);
             this.ClientesPessoaFisica.Add(Cliente);
-            
+            string caminhoBase = AppDomain.CurrentDomain.BaseDirectory;
+            string caminhoPasta = "Clientes/PessoaFisica/";
+            string nomeArquivo = $"{Cliente.Nome}.txt";
+            string caminhoCompleto = Path.Combine(caminhoBase, caminhoPasta, nomeArquivo);
+
+            using (StreamWriter Sw = new StreamWriter(caminhoCompleto))
+            {
+                Sw.Write($"{Cliente}");
+            }
+            this.Apresentacao();
         }
         private void ListarTodos()
         {
             Console.Clear();
-            Console.WriteLine("Pressione o número 9 para retornar");
-            ConsoleKeyInfo Retornar = Escolha.SelecionarOpcao();
-            if (Retornar.Key == ConsoleKey.D9)
+            string pasta = "Clientes/PessoaFisica";
+            if (Directory.Exists(pasta))
             {
-                Console.Clear();
-                new Sistema();
+                string[] arquivos = Directory.GetFiles(pasta);
+
+                if (arquivos.Length > 0)
+                {
+                    Console.WriteLine("Selecione o arquivo que deseja visualizar:");
+
+                    for (int i = 0; i < arquivos.Length; i++)
+                    {
+                        Console.WriteLine($"{i + 1}. {Path.GetFileName(arquivos[i])}");
+                    }
+
+                    int opcao = int.Parse(Console.ReadLine());
+
+                    string nomeDoArquivo = arquivos[opcao - 1];
+
+                    // código para visualizar o arquivo selecionado
+                    //string caminhoCompleto = @"Clientes/PessoaFisica/" + nomeDoArquivo;
+                    string caminhoCompleto = Path.Combine(nomeDoArquivo);
+                    Console.WriteLine(caminhoCompleto);
+                    if (File.Exists(caminhoCompleto))
+                    {
+                        using (StreamReader sr = new StreamReader(caminhoCompleto))
+                        {
+                            string linha;
+                            while ((linha = sr.ReadLine()) != null)
+                            {
+                                Console.WriteLine(linha);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Arquivo {nomeDoArquivo} não encontrado.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Não há arquivos salvos na pasta.");
+                }
             }
-            //if(this.ClientesPessoaFisica.Count > 0)
+            else
+            {
+                Console.WriteLine("A pasta não existe.");
+            }
+
+
+            //if (this.ClientesPessoaFisica.Count > 0)
             //{
-            //    foreach(PessoaFisica Cliente in this.ClientesPessoaFisica)
+            //    foreach (PessoaFisica Cliente in this.ClientesPessoaFisica)
             //    {
             //        Console.Write(Cliente);
             //        Console.WriteLine("\n---------------------------------------------------------------\n");
@@ -71,6 +144,13 @@ namespace cadastro_de_clientes.Classes.Sistema
             //{
             //    Console.WriteLine("\nNenhum Cliente Adicionado.");
             //}
+            Console.WriteLine("Pressione o número 9 para retornar");
+            ConsoleKeyInfo Retornar = Escolha.SelecionarOpcao();
+            if (Retornar.Key == ConsoleKey.D9)
+            {
+                Console.Clear();
+                this.Apresentacao();
+            }
         }
         private Endereco AdicionarInformacoesDeEndereco()
         {
@@ -322,13 +402,20 @@ Informações do Endereço Concluídas:
             }
                 
         }
-        private void SalvarRegistro()
+        private void ExportarCSV()
         {
+            // Obtém o diretório em que o programa está sendo executado
+            string diretorioAtual = Directory.GetCurrentDirectory();
 
-        }
-        ~MenuPessoaFisica()
-        {
+            // Define o diretório de origem dos arquivos .txt
+            string diretorioOrigem = Path.Combine(diretorioAtual, "Clientes/PessoaFisica");
+            Console.WriteLine(diretorioOrigem);
+            // Chama o método Exportar da classe ExportadorCSV para converter os arquivos .txt para .csv
+            ExportadorCSV.Exportar(diretorioOrigem);
+            Console.WriteLine("Arquivo exportado com sucesso");
+            Thread.Sleep(2000);
             Console.Clear();
+            this.Apresentacao();
         }
     }
 }

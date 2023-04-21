@@ -20,6 +20,16 @@ public class MenuPrincipal : Menu
         return Titulo;
     }
 
+    public override void Apresentacao()
+    {
+        Console.Clear();
+        this.Titulo = DefinirTitulo();
+        Console.Write(this.Titulo);
+        var OpcaoSelecionada = Escolha.SelecionarOpcao();
+        this.OpcaoSelecionada = OpcaoSelecionada;
+        this.ExecutarOpcaoSelecionada();
+    }
+
     public override void ExecutarOpcaoSelecionada()
     {
         switch(this.OpcaoSelecionada.Key)

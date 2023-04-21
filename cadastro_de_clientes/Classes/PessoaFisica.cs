@@ -68,8 +68,8 @@ Informações do Cliente:
 Nome: {this.Nome}
 CPF: {this.Cpf}
 Data de Nascimento: {this.DataNascimento.ToString("d")}
-Rendimento: {this.Rendimento:C} reais
-Imposto Apurado: {this.PagarImposto():C} reais
+Rendimento: {this.Rendimento.ToString("C")} reais
+Imposto Apurado: {this.PagarImposto().ToString("C")} reais
 Informações de Endereço:
 
 {this.Endereco}
